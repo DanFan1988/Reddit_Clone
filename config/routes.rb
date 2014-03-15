@@ -1,4 +1,6 @@
 RedditClone::Application.routes.draw do
+  get "root/root"
+
   namespace :user do 
     resources :users, :only => [:create, :show]
   end
@@ -8,5 +10,5 @@ RedditClone::Application.routes.draw do
   end
 
   resource :session, :only => [:create, :destroy, :show]
-  root :to => "home#index"
+  root :to => "root#root"
 end
