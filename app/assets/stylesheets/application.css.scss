@@ -17,3 +17,21 @@ body {
   padding-top: 70px;
   margin: 0auto;
 }
+
+form {
+	background-color: lightblue;
+	width: 50%;
+	margin: auto;
+	border-radius: 10px;
+	padding: 20px;
+
+	.form-group {
+		width: 90%;
+		margin: auto;
+		padding: 20px;
+	}
+}
+
+h2 {
+	text-align: center;
+}

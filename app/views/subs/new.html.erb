@@ -1,0 +1,15 @@
+<h2>Create a Subreddit</h2>
+
+<%= render :partial => "partials/errors" %>
+
+<form role="form" action="<%= subs_url %>" method="post">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="sub[title]">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" placeholder="Optional" name="sub[description]"></textarea>
+  </div>
+  <input type="submit" class="btn btn-default">
+</form>

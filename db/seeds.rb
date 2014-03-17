@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+ActiveRecord::Base.transaction do
+	Sub.create(:title => "Pics")
+	Sub.create(:title => "Funny")
+	Sub.create(:title => "Gaming")
+	Sub.create(:title => "AskReddit")
+	Sub.create(:title => "WorldNews")
+	Sub.create(:title => "Videos")
+end
