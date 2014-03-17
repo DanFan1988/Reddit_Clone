@@ -6,10 +6,11 @@
 	<% @posts.each do |post| %>
 	  <dt>
 	  	<% if post.url %>
-
-	  	<a href="<%= post.url %>"><%= post.title %></a>
+	  		<a href="<%= post.url %>"><%= post.title %></a>
+	  	<% else %>
+	  		<a href="<%= posts_url(post) %>"><%= post.title %></a>
 	  	<% end %>
 	  </dt>
-	  <dd>...</dd>
+	  <dd><a href="<%= posts_url(post) %>"><%= post.comments.count %> comments</a></dd>
 	<% end %>
 </dl>

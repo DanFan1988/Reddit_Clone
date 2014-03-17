@@ -1,15 +1,37 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+<h2>Sign Up</h2>
+
+<%= render :partial => "partials/errors" %>
+
+<form role="form" action="<%= posts_url %>" method="post">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="post[title]">
+  </div>
+  <div class="form-group">
+    <label for="url">URL</label>
+    <input type="text" class="form-control" id="url" name="post[url]" placeholder="Optional">
+  </div>
+  <div class="form-group">
+  	<label for="sub">Subreddit</label>
+	  <select class="form-control" id="sub" name="post[sub_id]">
+	  	<% @subs.each do |sub| %>
+		  <option value="<%=sub.id%>"><%= sub.title %></option>
+		  <% end %>
+		</select>
+	</div>
+  <div class="form-group">
+    <label for="body">Body</label>
+    <textarea class="form-control" id="body" placeholder="Optional" name="post[body]"></textarea>
+  </div>
+  <input type="submit" class="btn btn-default">
+</form>
+
+
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h5 class="text-center">
                         SIGN UP</h5>
-                    <form class="form form-signup" role="form" action="<%= action %>" method="post">
-                      <input
-                         name="_method"
-                         type="hidden"
-                         value="<%= method %>">
+                    <form class="form form-signup" role="form" action="<%= users_url %>" method="post">
                       <input
                          name="authenticity_token"
                          type="hidden"
@@ -35,6 +57,3 @@
                 </div>
                 <input type="submit" class="btn btn-sm btn-primary btn-block" role="button"></form>
             </div>
-        </div>
-    </div>
-</div>
