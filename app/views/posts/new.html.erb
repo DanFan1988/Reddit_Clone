@@ -3,6 +3,7 @@
 <%= render :partial => "partials/errors" %>
 
 <form role="form" action="<%= posts_url %>" method="post">
+  <input type="hidden" value="<%=current_user.id%>" name="post[author_id]">
   <div class="form-group">
     <label for="title">Title</label>
     <input type="text" class="form-control" id="title" name="post[title]">

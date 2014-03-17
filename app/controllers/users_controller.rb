@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :require_signed_in!, :only => [:show]
-  before_filter :require_signed_out!, :only => [:create, :new]
 
   def new
     @user = User.new
@@ -8,23 +6,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
     if @user.save
-      sign_in(@user)
-      redirect_to user_url(@user)
+      log_in!(@user)
+      render :show
     else
-      flash.now[:errors] = @user.errors.full_messages
-      render :new
+      render :json => @user.errors, :status => :unprocessable_entity
     end
   end
 
   def show
-    if params.include?(:id)
-      @user = User.find(params[:id])
-    else
-      redirect_to user_url(current_user)
-    end
+    @user = User.find(params[:id])
   end
-
-  private
 end

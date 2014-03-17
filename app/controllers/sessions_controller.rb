@@ -1,33 +1,26 @@
 class SessionsController < ApplicationController
-  before_action :require_signed_out!, :only => [:new, :create]
-  before_action :require_signed_in!, :only => [:destroy]
-
-  def new
-  end
-
   def create
-    @user = User.find_by_credentials(
-      user_params[:username],
-      user_params[:password]
-    )
-
+    @user = User.find_by_credentials(params[:user])
     if @user
-      sign_in(@user)
-      redirect_to user_url(@user)
+      log_in!(@user)
+      render :json => @user.id
     else
-      flash.now[:errors] = ["Invalid Credentials"]
-      render :new
+      render :json => "Invalid credentials",
+        :status => :unprocessable_entity
     end
   end
 
   def destroy
-    sign_out
-    redirect_to new_session_url
+    current_user && log_out!(current_user)
+    head :ok
   end
 
-  private
+  def show
+    @user = current_user || default_user
 
-  def user_params
-    params.require(:user).permit(:username, :password)
+    @subscriptions = []
+    @user.subscribed_subs.each do |sub|
+      @subscriptions << [sub.slug, sub.title.upcase]
+    end
   end
 end
