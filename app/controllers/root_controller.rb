@@ -1,5 +1,5 @@
 class RootController < ApplicationController
   def root
-  	@posts = posts.all
+  	@posts = Post.all
   end
 end
