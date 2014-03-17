@@ -2,3 +2,9 @@
   <li class="active"><a href="#">Hot</a></li>
   <li><a href="#">New</a></li>
 </ul>
+<dl>
+	<% @posts.each do |post| %>
+	  <dt><a href="<%= post.url %>"><%= post.title %></a></dt>
+	  <dd>...</dd>
+	<% end %>
+</dl>
