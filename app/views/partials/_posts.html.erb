@@ -5,12 +5,12 @@
 <dl>
 	<% @posts.each do |post| %>
 	  <dt>
-	  	<% if post.url %>
+	  	<% if post.url.length > 0 %>
 	  		<a href="<%= post.url %>"><%= post.title %></a>
 	  	<% else %>
-	  		<a href="<%= posts_url(post) %>"><%= post.title %></a>
+	  		<a href="<%= post_url(post) %>"><%= post.title %></a>
 	  	<% end %>
 	  </dt>
-	  <dd><a href="<%= posts_url(post) %>"><%= post.comments.count %> comments</a></dd>
+	  <dd><a href="<%= post_url(post) %>"><%= post.comments.count %> comments</a></dd>
 	<% end %>
 </dl>
