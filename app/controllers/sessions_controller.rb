@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user])
     if @user
       log_in!(@user)
-      render :json => @user.id
+      redirect_to :root
     else
       render :json => "Invalid credentials",
         :status => :unprocessable_entity

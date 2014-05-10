@@ -2,7 +2,7 @@
   <li class="active"><a href="#">Hot</a></li>
   <li><a href="#">New</a></li>
 </ul>
-<dl>
+<dl class="post-list">
 	<% @posts.each do |post| %>
 	  <dt>
 	  	<% if post.url.length > 0 %>
@@ -10,7 +10,24 @@
 	  	<% else %>
 	  		<a href="<%= post_url(post) %>"><%= post.title %></a>
 	  	<% end %>
+  	  	<div><a href="<%= post_url(post) %>"><%= post.comments.count %> comments</a></div>
 	  </dt>
-	  <dd><a href="<%= post_url(post) %>"><%= post.comments.count %> comments</a></dd>
+	  <dd><% karma = 0%>
+		  <% post.votes.each do |vote| %>
+			 <% karma += 1 if vote.direction == "up"%>
+			 <% karma -= 1 if vote.direction == "down"%>
+		  <% end %>
+		  <%= karma %>
+		  <form action='<%= votes_url %>' method="post">
+			  <input type="hidden" value='<%= post.id%>' name="vote[post_id]">
+			  <input type="hidden" value="up" name="vote[direction]">
+			  <input type="submit" value="Upvote">
+		  </form>
+		  <form action='<%= votes_url %>' method='post'>
+			  <input type='hidden' value='<%= post.id %>' name='vote[post_id]'>
+			  <input type="hidden" value="down" name='vote[direction]'>
+			  <input type="submit" value="Downvote">
+		  </form>
+	  </dd>
 	<% end %>
 </dl>

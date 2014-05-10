@@ -2,8 +2,13 @@
 <p> Posted by <%=@post.author.username%></p>
 <ul>
 <% @comments.each do |comment| %>
-	<li><%= comment.body%></li>
+	<li><%= comment.body%> | <%= comment.author.username %></li>
 <% end%>
 </ul>
 
-<textarea>
+<form action='<%= comments_url%>' method="post">
+	<textarea name="comment[body]" placeholder="Comment here.."></textarea>
+	<input type="hidden" value="<%= @post.id %>" name="comment[post_id]">
+	<br>
+	<input type="submit">
+</form>

@@ -18,7 +18,7 @@ body {
   margin: 0auto;
 }
 
-form {
+.form-signup {
 	background-color: lightblue;
 	width: 50%;
 	margin: auto;
@@ -38,4 +38,24 @@ h2 {
 
 dl {
 	margin-left: 20px;
+}
+
+.post-list {
+	dt {
+		border: 1px solid black;
+		padding: 5px;
+		font-size: 15px;
+		width: 90%;
+		float: right;
+		a {
+			margin-left: 10px;
+		}
+		div {
+			text-align: right;
+			font-size:12px;
+			a {
+				margin-right: 10px;
+			}
+		}
+	}
 }
