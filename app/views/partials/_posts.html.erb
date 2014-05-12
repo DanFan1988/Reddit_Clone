@@ -17,12 +17,12 @@
 			 <% karma += 1 if vote.direction == "up"%>
 			 <% karma -= 1 if vote.direction == "down"%>
 		  <% end %>
-		  <%= karma %>
 		  <form action='<%= votes_url %>' method="post">
 			  <input type="hidden" value='<%= post.id%>' name="vote[post_id]">
 			  <input type="hidden" value="up" name="vote[direction]">
 			  <input type="submit" value="Upvote">
 		  </form>
+		  <%= karma %>
 		  <form action='<%= votes_url %>' method='post'>
 			  <input type='hidden' value='<%= post.id %>' name='vote[post_id]'>
 			  <input type="hidden" value="down" name='vote[direction]'>
